@@ -1,4 +1,6 @@
-import { createTheme } from "@mui/material/styles";
+"use client";
+
+import { ThemeProvider, createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -7,7 +9,8 @@ const theme = createTheme({
       contrastText: "#F0F5F9",
     },
     secondary: {
-      main: "#52616B",
+      main: "#252525",
+      // main: "#52616B",
       contrastText: "#11263C",
     },
   },
@@ -41,6 +44,7 @@ const theme = createTheme({
     },
     body2: {
       color: "#11263C",
+      lineHeight: 1.5,
     },
     button: {
       color: "#F0F5F9",
@@ -49,4 +53,8 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+const Providers = ({ children }: { children: React.ReactNode }) => {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};
+
+export default Providers;
