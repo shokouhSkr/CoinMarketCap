@@ -1,23 +1,20 @@
 "use client";
 
-import { Box, Container, Divider, IconButton, Stack } from "@mui/material";
+import { useState } from "react";
+import { Box, Container, Divider, Drawer, IconButton, Stack } from "@mui/material";
 import Image from "next/image";
 import logo from "@/public/logo.svg";
 import Search from "@/components/icons/Search";
 import { Diamond, Menu } from "@mui/icons-material";
-import { Navbar } from "@/components";
+import { MenuItems, Navbar } from "@/components";
+import styled from "@emotion/styled";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
   return (
     <>
-      <Container
-        sx={{
-          paddingY: 1.5,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <StyledContainer>
         {/* LOGO */}
         <Box display="flex" alignItems="center">
           <Image src={logo} alt="CoinMarketCap" />
@@ -25,17 +22,22 @@ const Header = () => {
 
         {/* BUTTONS */}
         <Stack direction="row" alignItems="center">
-          <IconButton color="secondary" aria-label="menu">
+          <IconButton aria-label="search">
             <Search />
           </IconButton>
-          <IconButton color="secondary" aria-label="sing up/login">
+          <IconButton aria-label="sing up/login">
             <Diamond />
           </IconButton>
-          <IconButton color="secondary" aria-label="search">
+          <IconButton aria-label="menu" onClick={() => setIsMenuOpen(true)}>
             <Menu />
           </IconButton>
         </Stack>
-      </Container>
+      </StyledContainer>
+
+      {/* MENU */}
+      <Drawer anchor="left" open={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
+        <MenuItems setIsMenuOpen={setIsMenuOpen} />
+      </Drawer>
 
       <Divider />
       <Navbar />
@@ -43,5 +45,13 @@ const Header = () => {
     </>
   );
 };
+
+const StyledContainer = styled(Container)({
+  paddingBottom: "12px",
+  paddingTop: "12px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
 
 export default Header;

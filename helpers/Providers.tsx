@@ -6,12 +6,15 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#FC6011",
-      contrastText: "#F0F5F9",
+      contrastText: "#1F141D", //"#F0F5F9"
     },
     secondary: {
-      main: "#252525",
+      main: "#A6B0C3",
       // main: "#52616B",
       contrastText: "#11263C",
+    },
+    common: {
+      black: "#1F141D",
     },
   },
   typography: {
@@ -48,8 +51,12 @@ const theme = createTheme({
     },
     button: {
       color: "#F0F5F9",
-      // fontFamily: "Intel",
+      textTransform: "none",
+      fontFamily: "inherit",
     },
+  },
+  shape: {
+    borderRadius: 8,
   },
 });
 
